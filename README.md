@@ -2,7 +2,7 @@
 
 Builds are automatically generated on push and on schedule to ensure image freshness.
 
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/Xalaxis/FTBOmnia-Revelation/main)
+![Build and Push Latest Versions](https://github.com/Xalaxis/FTB-Revelation/workflows/Build%20and%20Push%20Latest%20Versions/badge.svg?branch=main)
 
 A Docker container that runs the FTB Revelation modpack.
 
