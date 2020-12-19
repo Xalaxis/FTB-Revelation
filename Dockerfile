@@ -8,7 +8,7 @@ RUN apt-get upgrade -y
 # Create install directory if it isn't mounted to the host already
 RUN mkdir -p /usr/src/ftbomnia
 
-WORKDIR /usr/src/temporary
+WORKDIR /tmp/creeperpackinstaller
 
 ENV VERSION="LATEST"
 ENV MODPACKID="35"
@@ -17,6 +17,7 @@ ENV MINMEMORY="3072M"
 
 # Build server
 RUN bash downloadpack.sh
+WORKDIR /opt/minecraftftb
 RUN bash yes y | ./serverinstall
 # echo "Creating Minecraft EULA file"
 RUN echo "eula=true" > eula.txt
