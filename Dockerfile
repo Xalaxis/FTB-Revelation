@@ -15,7 +15,7 @@ ENV MINMEMORY="3072M"
 # Build server
 RUN bash downloadpack.sh
 WORKDIR /opt/minecraftftb
-RUN bash yes y | ./serverinstall_"$MODPACKID"_"$VERSION"
+RUN bash yes y | ./serverinstall_*
 # echo "Creating Minecraft EULA file"
 RUN echo "eula=true" > eula.txt
 ENTRYPOINT [ "bash java -server -XX:+UseG1GC -XX:+UnlockExperimentalVMOptions -Xmx${MAXMEMORY} -Xms${MINMEMORY} -Dfml.queryResult=confirm -jar forge-*.jar nogui" ]
