@@ -15,3 +15,4 @@ ENV MODPACKID="35"
 
 # Build server
 RUN bash install.sh
+ENTRYPOINT [ "java -server -XX:+UseG1GC -XX:+UnlockExperimentalVMOptions -Xmx4G -Xms3072M -Dfml.queryResult=confirm -jar forge-*.jar nogui" ]
