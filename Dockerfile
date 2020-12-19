@@ -15,7 +15,7 @@ ENV MODPACKID="35"
 
 # Build server
 RUN bash downloadpack.sh
-RUN yes y | ./serverinstall_$MODPACKID_$VERSION
+RUN bash yes y | ./serverinstall_"$MODPACKID"_"$VERSION"
 # echo "Creating Minecraft EULA file"
 RUN echo "eula=true" > eula.txt
 ENTRYPOINT [ "java -server -XX:+UseG1GC -XX:+UnlockExperimentalVMOptions -Xmx4G -Xms3072M -Dfml.queryResult=confirm -jar forge-*.jar nogui" ]
