@@ -1,5 +1,5 @@
 # Based on JDK 11, as I think that is the most recent version which works with FTB Omnia and I'm assuming that more recent versions of Java have better optimizations
-FROM wolfrazu/creeperhostpackinstaller:latest
+FROM wolfrazu/creeperhostpackinstaller:java8
 LABEL maintainer="matthew+docker@wolfie.ovh"
 # Upgrade all packages to latest versions available
 RUN apt-get update
@@ -18,4 +18,4 @@ WORKDIR /opt/minecraftftb
 RUN bash yes y | ./serverinstall_*
 # echo "Creating Minecraft EULA file"
 RUN echo "eula=true" > eula.txt
-ENTRYPOINT [ "java", "-server", "-XX:+UseG1GC", "-XX:+UnlockExperimentalVMOptions", "-Xmx${MAXMEMORY}", "-Xms${MINMEMORY}", "-Dfml.queryResult=confirm", "-jar", "forge-*.jar", "nogui" ]
+ENTRYPOINT [ "bash", "-c", "java -server -XX:+UseG1GC -XX:+UnlockExperimentalVMOptions -Xmx${MAXMEMORY} -Xms${MINMEMORY} -Dfml.queryResult=confirm -jar forge-*.jar nogui" ]
