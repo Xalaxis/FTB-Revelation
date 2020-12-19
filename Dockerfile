@@ -12,10 +12,12 @@ WORKDIR /usr/src/temporary
 
 ENV VERSION="LATEST"
 ENV MODPACKID="35"
+ENV MAXMEMORY="4G"
+ENV MINMEMORY="3072M"
 
 # Build server
 RUN bash downloadpack.sh
-RUN bash yes y | ./serverinstall_"$MODPACKID"_"$VERSION"
+RUN bash yes y | ./serverinstall
 # echo "Creating Minecraft EULA file"
 RUN echo "eula=true" > eula.txt
-ENTRYPOINT [ "java -server -XX:+UseG1GC -XX:+UnlockExperimentalVMOptions -Xmx4G -Xms3072M -Dfml.queryResult=confirm -jar forge-*.jar nogui" ]
+ENTRYPOINT [ "bash java -server -XX:+UseG1GC -XX:+UnlockExperimentalVMOptions -Xmx${MAXMEMORY} -Xms${MINMEMORY} -Dfml.queryResult=confirm -jar forge-*.jar nogui" ]
