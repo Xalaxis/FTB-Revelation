@@ -22,6 +22,4 @@ RUN bash yes y | ./serverinstall_*
 
 WORKDIR /opt/minecraftftb
 
-RUN bash cleanup.sh
-
-RUN cp -R /tmp/creeperpackinstaller /opt/minecraftftb
+ENTRYPOINT [ "bash", "./start.sh" ]
