@@ -17,7 +17,3 @@ ENV MINMEMORY="3072M"
 RUN bash downloadpack.sh
 
 RUN bash yes y | ./serverinstall_*
-
-ADD setup.sh .
-
-ENTRYPOINT [ "bash", "./setup.sh" ]
