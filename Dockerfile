@@ -18,13 +18,9 @@ RUN cp cleanup.sh /opt/minecraftftb
 
 RUN bash downloadpack.sh
 
-WORKDIR /opt/minecraftftb
-
 RUN bash yes y | ./serverinstall_*
 
-
-
-
+WORKDIR /opt/minecraftftb
 
 RUN bash cleanup.sh
 
