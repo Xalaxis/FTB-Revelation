@@ -1,5 +1,9 @@
 #!/bin/bash
 
+cp cleanup.sh /opt/minecraftftb
+
+cd /opt/minecraftftb
+
 bash cleanup.sh
 
 echo "Copying new files..."
