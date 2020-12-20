@@ -22,6 +22,6 @@ RUN bash yes y | ./serverinstall_*
 
 WORKDIR /opt/minecraftftb
 
-ADD start.sh .
+ADD setup.sh .
 
-ENTRYPOINT [ "bash", "./start.sh" ]
+ENTRYPOINT [ "bash", "./setup.sh" ]
