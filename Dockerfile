@@ -13,13 +13,18 @@ ENV MAXMEMORY="4G"
 ENV MINMEMORY="3072M"
 
 # Build server
-RUN bash downloadpack.sh
-
-RUN bash yes y | ./serverinstall_*
 
 RUN cp cleanup.sh /opt/minecraftftb
 
+RUN bash downloadpack.sh
+
 WORKDIR /opt/minecraftftb
+
+RUN bash yes y | ./serverinstall_*
+
+
+
+
 
 RUN bash cleanup.sh
 
