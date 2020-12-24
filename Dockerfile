@@ -16,4 +16,4 @@ ENV MINMEMORY="3072M"
 
 RUN bash downloadpack.sh
 
-RUN bash yes y | ./serverinstall_*
+RUN bash -c yes y | ./serverinstall_*
