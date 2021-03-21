@@ -1,17 +1,19 @@
-name: Build and Push Latest Versions
+name: Build and Push Container
 
 on:
   push:
     branches:
-      - main
+      - main # When "main" is pushed
   schedule:
-    - cron: '0 3 * * *'
+    - cron: '0 3 * * *' # Everyday at 3AM
 
 env:
   IMAGE_NAME: wolfrazu/ftb-revelation
+  MODPACK_ID: 35
 
 jobs:
   main:
+    name: Build and Push container
     runs-on: ubuntu-latest
     steps:
       -
@@ -27,12 +29,19 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       -
-        name: Build and push
+        name: Get modpack version
+        id: get_modpack_version
+        run: |
+          echo "::set-output name=modpack_version::$(curl https://api.modpacks.ch/public/modpack/${{env.MODPACK_ID}}/ | jq '.versions[-1].name' | tr -d '"')"
+      -
+        name: Build and push container
         id: docker_build
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: ${{ env.IMAGE_NAME }}:latest
+          tags: |
+            ${{ env.IMAGE_NAME }}:latest
+            ${{ env.IMAGE_NAME }}:${{ steps.get_modpack_version.outputs.modpack_version }}
       -
         name: Image digest
         run: echo ${{ steps.docker_build.outputs.digest }}
